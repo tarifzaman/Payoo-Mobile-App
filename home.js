@@ -1,19 +1,29 @@
-console.log("yes connected")
+const validPin = 1234;
 
-document.getElementById("add-money-btn").addEventListener("click",function(e){
-    e.preventDefault()
-    console.log("add money button clicked")
+document.getElementById("add-money-btn").addEventListener("click", function (e) {
+    e.preventDefault();
+    console.log("add money button clicked");
 
-    const bank = document.getElementById("bank").value 
-    const accountNumber = document.getElementById("bank-account-number").value 
-    const amount = parseInt(document.getElementById("add-amount").value) 
-    const pin = document.getElementById("add-pin").value
+    const bank = document.getElementById("bank").value;
+    const accountNumber = document.getElementById("bank-account-number").value;
+    const amount = parseInt(document.getElementById("add-amount").value);
+    const pin = parseInt(document.getElementById("add-pin").value);
 
-    const availableBalance = parseInt(document.getElementById("available-balance").innerText)
+    const availableBalance = parseInt(document.getElementById("available-balance").innerText);
 
     console.log(availableBalance);
 
-    const totalNewAvailableBalance = availableBalance+amount
+    if (accountNumber.length < 11) {
+        alert("please provide account number");
+        return;
+    }
 
-    document.getElementById("available-balance").innerText = totalNewAvailableBalance
-})
+    if (pin !== validPin) {
+        alert("please provide valid pin");
+        return;
+    }
+
+    const totalNewAvailableBalance = availableBalance + amount;
+
+    document.getElementById("available-balance").innerText = totalNewAvailableBalance;
+});
